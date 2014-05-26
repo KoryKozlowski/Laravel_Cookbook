@@ -2,8 +2,8 @@
 
 Route::get('userresults', function()
 {
-   return 'Your username is: ' . Input::old('username')
-   . '<br>Your favorite color is: ' . Input::old('color'); 
+   // die & dump validated input
+   return dd(Input::old());
 });
 
 Route::get('userform', function()
@@ -13,6 +13,18 @@ Route::get('userform', function()
 
 Route::post('userform', function()
 {
-   // Process form data
-   return Redirect::to('userresults')->withInput(Input::only('username', 'color'));  
+   $rules = array(
+      'email'    => 'required | email | different:username',
+      'username' => 'required | min:6',
+      'password' => 'required | same:password_confirm'
+   );
+
+   $validation = Validator::make(Input::all(), $rules);
+
+   if($validation->fails())
+   {
+      return Redirect::to('userform')->withErrors($validation)->withInput();
+   }
+
+   return Redirect::to('userresults')->withInput();
 });
