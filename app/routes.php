@@ -1,17 +1,18 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
-|
-*/
-
-Route::get('/', function()
+Route::get('userresults', function()
 {
-	return View::make('hello');
+   return 'Your username is: ' . Input::old('username')
+   . '<br>Your favorite color is: ' . Input::old('color'); 
+});
+
+Route::get('userform', function()
+{
+   return View::make('userform');
+});
+
+Route::post('userform', function()
+{
+   // Process form data
+   return Redirect::to('userresults')->withInput(Input::only('username', 'color'));  
 });
