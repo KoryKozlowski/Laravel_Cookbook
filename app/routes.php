@@ -5,6 +5,35 @@ Route::get('/', function()
    return View::make('hello');   
 });
 
+Route::post('myform', array('before' => 'csrf', function()
+{
+   $rules = array(
+      'email'    => 'required | email | min:6',
+      'username' => 'required | min:6',
+      'password' => 'required'
+   );
+
+   $messages = array(
+      'min' => 'Way too short! The :attribute must be at least :min characters in length.',
+      'username.required' => 'We need to know who you are, please.', 
+      'password.required' => 'We cannot let you in without a password.'
+   );
+
+   $validation = Validator::make(Input::all(), $rules, $messages);
+
+   if($validation->fails())
+   {
+      return Redirect::to('myform')->withErrors($validation)->withInput();
+   }
+
+   return Redirect::to('userresults')->withInput();
+}));
+
+Route::get('myform', function()
+{
+    return View::make('myform');
+});
+
 Route::get('userresults', function()
 {
    // die & dump validated input

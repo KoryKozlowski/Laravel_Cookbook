@@ -99,6 +99,8 @@ return array(
 	|
 	*/
 
-	'attributes' => array(),
+   'attributes' => array(
+      'password' => 'Super secret password (shhhhh!)'
+   ),
 
 );
