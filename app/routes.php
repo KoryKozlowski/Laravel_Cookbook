@@ -2,7 +2,7 @@
 
 Route::get('/', function()
 {
-   return View::make('hello');   
+   return View::make('hello');
 });
 
 Route::post('myform', array('before' => 'csrf', function()
@@ -10,13 +10,15 @@ Route::post('myform', array('before' => 'csrf', function()
    $rules = array(
       'email'    => 'required | email | min:6',
       'username' => 'required | min:6',
-      'password' => 'required'
+      'password' => 'required',
+      'no_email' => 'honey_pot'
    );
 
    $messages = array(
       'min' => 'Way too short! The :attribute must be at least :min characters in length.',
-      'username.required' => 'We need to know who you are, please.', 
-      'password.required' => 'We cannot let you in without a password.'
+      'username.required' => 'We need to know who you are, please.',
+      'password.required' => 'We cannot let you in without a password.',
+      'honey_pot' => 'Nothing should be in this field.'
    );
 
    $validation = Validator::make(Input::all(), $rules, $messages);
@@ -93,4 +95,10 @@ Route::post('fileform', function()
         return 'Error';
       }
    }
+});
+
+//-- If honey_pot is not empty, it has been filled in by a bot
+Validator::extend('honey_pot', function($attribute, $value, $parameters)
+{
+   return $value == '';
 });

@@ -23,6 +23,7 @@ foreach($messages as $msg)
 
 <?= Form::label('password', 'Password ')?>
 <?= Form::password('password') ?>
+<?= Form::text('no_email', '', array('style' => 'display:none')) ?>
 
 <br>
 
