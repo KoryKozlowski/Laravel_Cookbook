@@ -7,5 +7,6 @@ This is a repository corresponding to the various "recipes" contained within the
 
 Each commit corresponds to one or more recipe encapsulating one or more important practice of a practical web application. 
 
+As each recipe is completed, I add any additionally created views to the index (hello.php) so that the project may be viewed and navigated with ease. 
 
-Kory Kozlowski - 2014
+⋅⋅* Kory Kozlowski - 2014
