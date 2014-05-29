@@ -12,4 +12,8 @@
 
 <p><button><a href="/myform">My Form</a></button></p>
 
+<br>
+
+<p><button><a href="/redactor">Redactor</a></button></p>
+
 <hr>
