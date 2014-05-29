@@ -9,4 +9,4 @@ Each commit corresponds to one or more recipe encapsulating one or more importan
 
 As each recipe is completed, I add any additionally created views to the index (hello.php) so that the project may be viewed and navigated with ease. 
 
-⋅⋅* Kory Kozlowski - 2014
+  * Kory Kozlowski - 2014
