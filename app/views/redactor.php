@@ -21,6 +21,6 @@
                imageUpload: 'redactorupload'
             });
          });
-      </script>  
-   </body>  
+      </script>
+   </body>
 </html>

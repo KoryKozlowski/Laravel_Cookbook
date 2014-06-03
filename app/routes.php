@@ -136,5 +136,55 @@ Route::post('redactorupload', function()
 
 Route::post('redactor', function()
 {
-   return dd(Input::all());
+  return dd(Input::all());
+});
+
+Route::get('imageform', function()
+{
+  return View::make('imageform');
+});
+
+Route::post('imageform', function()
+{
+  $rules = array(
+    'image' => 'required | mimes:jpeg,jpg | max:10000'
+  );
+
+  $validation = Validator::make(Input::all(), $rules);
+
+  if($validation->fails())
+  {
+    return Redirect::to('imageform')->withErrors($validation);
+  }
+  else
+  {
+    $file = Input::file('image');
+    $file_name = $file->getClientOriginalName();
+
+    if($file->move('images', $file_name))
+    {
+      return Redirect::to('jcrop')->with('image', $file_name);
+    }
+    else
+    {
+      return "Error uploading file: $filename";
+    }
+  }
+});
+
+Route::get('jcrop', function()
+{
+  return View::make('jcrop')->with('image', 'images/' . Session.get('image'));
+});
+
+Route::post('jcrop', function()
+{
+  $quality = 90;
+  $src = Input::get('image');
+  $img = imagecreatefromjpeg($src);
+  $dest = ImageCreateTrueColor(Input::get('w'), Input::get('h'));
+  imagecopyresampled($dest, $img, 0, 0, Input::get('x'), Input::get('y'), Input::get('w'), Input::get('h'), Input::get('w'), Input::get('h'));
+  imagejpeg($dest, $src, $quality);
+
+  return "<img src='" . $src . "'>";
 });

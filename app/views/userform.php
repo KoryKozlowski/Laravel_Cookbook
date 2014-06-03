@@ -2,7 +2,7 @@
 
 <?php $messages = $errors->all('<p style="color:red">:message</p>') ?>
 
-<?php 
+<?php>
 foreach($messages as $msg)
 {
    echo $msg;
@@ -38,4 +38,4 @@ foreach($messages as $msg)
 
 <?= Form::submit('Send it!') ?>
 
-<?= Form::close() ?> 
+<?= Form::close() ?>

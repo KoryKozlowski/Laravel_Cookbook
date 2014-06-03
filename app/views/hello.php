@@ -16,4 +16,8 @@
 
 <p><button><a href="/redactor">Redactor</a></button></p>
 
+<br>
+
+<p><button><a href="/imageform">Jcrop</a></button></p>
+
 <hr>
